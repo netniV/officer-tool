@@ -1,0 +1,211 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="The Officer Tool by StewieDøø" description="A web edition of the STFC Officers Tool.">
+  <div class="tool-app" data-active-view="main">
+    <main class="workbook-frame home-lcars-frame">
+      <aside class="sheet-identity home-left-rail" aria-hidden="true">
+        <div class="copper-corner home-left-corner top"></div>
+        <div class="identity-label home-left-label"><strong id="identity-title">Main</strong><span id="identity-subtitle">Tool Navigation</span></div>
+        <div class="identity-version home-left-version">758.294</div>
+        <div class="identity-block home-left-divider"></div>
+        <div class="copper-corner home-left-corner bottom"></div>
+      </aside>
+
+      <div class="sheet-content">
+        <div class="workbook-top-rule home-top-rail" aria-hidden="true"><span>653.82</span></div>
+
+        <section class="sheet-view is-visible home-screen" data-page="main">
+          <div class="home-navigation-panel shared-home-panel">
+            <p>Tool Navigation</p>
+            <div class="home-navigation-columns">
+              <div class="home-navigation-list">
+                <button data-open-view="bonuses" type="button"><strong>Bonuses</strong><span>Used to maintain your Operations Level, Building, Territory, Research, Orion Syndicate and Fleet Commander bonuses.</span></button>
+                <button data-open-view="roster" type="button"><strong>Roster</strong><span>Used to maintain a record of your officer's ranks and levels and view officer abilities, notes and upgrade scores. Also has the main, single ship, loadout planner, and Exocomp selection.</span></button>
+                <button data-open-view="saved" type="button"><strong>Saved Setups</strong><span>You can store up to 15 full crew setups here, with notes.</span></button>
+                <button data-open-view="docks" type="button"><strong>All Docks</strong><span>Allows you to plan multiple ship loadouts for all your docks.</span></button>
+                <button data-open-view="presets" type="button"><strong>Pre-set Crews</strong><span>Use the filters to assist to identify crew suggestions for different scenarios.</span></button>
+                <button data-open-view="ships" type="button"><strong>Ships</strong><span>Maintain a record of your ship levels (optional), or simply use this sheet to view ship statistics and firing patterns.</span></button>
+              </div>
+              <div class="home-navigation-list">
+                <button data-open-view="ata-overview" type="button"><strong>ATA Overview</strong><span>Maintain a record of your officer's ATA Trait levels. View details about all the ATA missions, and which officers have matching traits for them.</span></button>
+                <button data-open-view="ata-analysis" type="button"><strong>ATA Analysis</strong><span>Allows you to analyse different aspects of the ATA system. List ATA missions by officer or required reward. You can also list officers by their traits.</span></button>
+                <button data-open-view="ata-planning" type="button"><strong>ATA Planning</strong><span>Keep track of the ATA's you would like to concentrate on. Select the officer whose traits you want to upgrade, and to which level. See the impact the upgrades will produce.</span></button>
+                <button data-open-view="migration" type="button"><strong>Migration</strong><span>Use this screen to migrate your data to a new version.</span></button>
+                <button data-open-view="changes" type="button"><strong>Change Log</strong><span>List of changes by version number.</span></button>
+              </div>
+            </div>
+            <div class="home-community">
+              <p>Join us on the official Discord Channel <strong>Official Tool Discord Server</strong></p>
+              <p>If you find this tool useful, and use it regularly, please consider making a donation towards the time taken developing it, and future updates, it would be greatly appreciated. Thank you.</p>
+              <span class="home-donate">Donate</span>
+            </div>
+          </div>
+        </section>
+
+        <section class="sheet-view" data-page="bonuses">
+          <div class="sheet-heading"><div><p>Player Inputs</p><h1>Bonuses</h1></div><span>Changes update roster and dock totals</span></div>
+          <div class="bonus-layout">
+            <div class="form-panel gold-panel">
+              <h2>Operations and Officer Bonuses</h2>
+              <label>Operations Level <input id="operations-level" type="number" min="1" max="80" value="39" /></label>
+              <label>Officer Attack Bonus <span><input id="bonus-attack" type="number" min="0" value="0" />%</span></label>
+              <label>Officer Defence Bonus <span><input id="bonus-defence" type="number" min="0" value="0" />%</span></label>
+              <label>Officer Health Bonus <span><input id="bonus-health" type="number" min="0" value="0" />%</span></label>
+            </div>
+            <div class="bonus-groups">
+              <article><h3>Building & Research</h3><p>Add the combined bonus shown by your station buildings and research.</p><label>Attack <input data-bonus-extra="attack" type="number" min="0" value="0" /></label><label>Defence <input data-bonus-extra="defence" type="number" min="0" value="0" /></label><label>Health <input data-bonus-extra="health" type="number" min="0" value="0" /></label></article>
+              <article><h3>Territory & Exocomps</h3><p>Capture temporary and territory service bonuses without changing base stats.</p><label>Attack <input data-bonus-extra="attack" type="number" min="0" value="0" /></label><label>Defence <input data-bonus-extra="defence" type="number" min="0" value="0" /></label><label>Health <input data-bonus-extra="health" type="number" min="0" value="0" /></label></article>
+              <article><h3>Fleet Commander</h3><p>Record the active Fleet Commander bonuses applied to bridge and lower-deck officers.</p><label>Attack <input data-bonus-extra="attack" type="number" min="0" value="0" /></label><label>Defence <input data-bonus-extra="defence" type="number" min="0" value="0" /></label><label>Health <input data-bonus-extra="health" type="number" min="0" value="0" /></label></article>
+            </div>
+          </div>
+        </section>
+
+        <section class="sheet-view" data-page="roster">
+          <div class="roster-summary">
+            <div class="boost-table"><h2>Boosted By</h2><div><span></span><b>Bridge</b><b>All</b></div><div><strong>Officer Attack Bonus</strong><span id="roster-attack-bonus">0%</span><span id="roster-attack-all">0%</span></div><div><strong>Officer Defence Bonus</strong><span id="roster-defence-bonus">0%</span><span id="roster-defence-all">0%</span></div><div><strong>Officer Health Bonus</strong><span id="roster-health-bonus">0%</span><span id="roster-health-all">0%</span></div></div>
+            <div class="loadout-mini"><h2>Ship Loadout</h2><label>Select Ship <select id="roster-ship"></select></label><div class="mini-slots"><button data-roster-slot="0" type="button">Captain</button><button data-roster-slot="1" type="button">Bridge</button><button data-roster-slot="2" type="button">Bridge</button></div><div class="loadout-totals"><span>Attack <b id="loadout-attack">0</b></span><span>Defence <b id="loadout-defence">0</b></span><span>Health <b id="loadout-health">0</b></span></div></div>
+          </div>
+          <div class="roster-controls">
+            <label><input id="apply-bonuses" type="checkbox" checked /> Apply bonuses to officers in active ship slots</label>
+            <label><input id="max-levels" type="checkbox" /> Display stats at maximum officer level</label>
+            <div class="search-field"><label for="roster-search">Search roster</label><input id="roster-search" type="search" placeholder="Officer, group or ability" /></div>
+            <label>Display <select id="roster-display"><option value="abilities">Abilities</option><option value="stats">Stats only</option><option value="below">Below Decks</option></select></label>
+          </div>
+        </section>
+
+        <section class="sheet-view" data-page="docks">
+          <div class="sheet-heading"><div><p>Loadout Planner</p><h1>All Docks</h1></div><button class="sheet-action" id="add-dock" type="button">＋ Add Dock</button></div>
+        </section>
+
+        <section class="sheet-view" data-page="saved">
+          <div class="sheet-heading"><div><p>Crew Library</p><h1>Saved Setups</h1></div><span>Stored on this device</span></div>
+          <form class="save-setup-form" id="save-setup-form"><label>Name<input id="setup-name" required placeholder="e.g. Enterprise Hostiles" /></label><label>Ship<select id="setup-ship"></select></label><label>Notes<input id="setup-notes" placeholder="Strategy or substitutions" /></label><button class="sheet-action" type="submit">Save current roster loadout</button></form>
+        </section>
+
+        <section class="sheet-view preset-sheet" data-page="presets">
+          <div class="preset-console">
+            <span class="preset-top-number" aria-hidden="true">653.816</span>
+            <div class="preset-console-top">
+              <label class="preset-crew-select">Select Crew<select id="preset-select" aria-label="Select Crew"></select></label>
+              <div class="preset-bridge-block">
+                <span>Bridge</span>
+                <div><b id="preset-captain">Captain</b><b id="preset-first-officer">1st Officer</b><b id="preset-second-officer">2nd Officer</b></div>
+              </div>
+            </div>
+            <div class="preset-console-details">
+              <strong>Notes</strong>
+              <div id="preset-notes">Select a crew to review its notes.</div>
+              <span>Recommended Rank:</span>
+              <b id="preset-recommended-rank">— / — / —</b>
+            </div>
+            <div class="preset-console-search">
+              <label>Search<input id="preset-search" type="search" placeholder="Crew, captain, officer or notes" /></label>
+              <div class="preset-filter-matrix" id="preset-filter-list" aria-label="Crew filters"></div>
+            </div>
+            <div class="preset-console-foot" aria-hidden="true"><span>745.69</span><span>689.11</span><span>165.648</span></div>
+          </div>
+        </section>
+
+        <section class="sheet-view" data-page="ships">
+          <div class="ship-stat-panel">
+            <div class="ship-select-block"><p>Ship Statistics</p><label>Select Ship<select id="ship-select"></select></label></div>
+            <div class="ship-level-block"><label>Level<input id="ship-level" type="number" min="0" value="0" /></label><span>Max Level <b id="ship-max-level">0</b></span><span>Crew <b id="ship-crew-size">3</b></span></div>
+            <div class="ship-ability"><strong>Ship Ability</strong><p id="ship-ability"></p></div>
+          </div>
+          <div class="firing-pattern"><h2>Firing Pattern</h2><div class="rounds" id="ship-rounds"></div></div>
+        </section>
+
+        <section class="sheet-view" data-page="ata-overview">
+          <div class="ata-overview-grid">
+            <div class="ata-mission-panel"><p>Away Missions And Traits Overview</p><label>Select Away Mission<select id="ata-mission"></select></label><dl id="ata-details"></dl></div>
+            <div class="trait-panel"><h2>Required Traits</h2><div id="ata-traits"></div></div>
+          </div>
+        </section>
+
+        <section class="sheet-view" data-page="ata-analysis">
+          <div class="sheet-heading"><div><p>Mission Comparison</p><h1>ATA Analysis</h1></div><span>Compare rewards, duration and trait requirements</span></div>
+          <div class="analysis-selectors" id="analysis-selectors"></div>
+        </section>
+
+        <section class="sheet-view" data-page="ata-planning">
+          <div class="sheet-heading"><div><p>Away Missions and Traits</p><h1>ATA Planning</h1></div><button class="sheet-action" id="save-ata-plan" type="button">Save plan</button></div>
+        </section>
+
+        <section class="sheet-view" data-page="migration">
+          <div class="sheet-heading"><div><p>Version Transfer</p><h1>Migration</h1></div><span>Web roster snapshot</span></div>
+          <div class="migration-grid">
+            <article><h2>Export your web data</h2><p>Download officer levels, ranks, bonuses, docks, saved setups and Away Team plans as a portable JSON snapshot.</p><button class="sheet-action" id="export-data" type="button">Download snapshot</button></article>
+            <article><h2>Import a snapshot</h2><p>Restore a snapshot created by this web edition. Existing local data will be replaced after validation.</p><label class="file-button">Choose snapshot<input id="import-data" type="file" accept="application/json,.json" /></label></article>
+            <article><h2>Original workbook</h2><p>The downloaded source workbook remains the calculation and design reference for the application.</p><a href="https://officertoolgs.stewiedoo.com/" target="_blank" rel="noreferrer">Open Google Sheets edition</a></article>
+          </div>
+        </section>
+
+        <section class="sheet-view" data-page="changes">
+          <div class="sheet-heading"><div><p>Web Edition</p><h1>Change Log</h1></div><span>Source: 1.8.M87</span></div>
+        </section>
+
+        <div class="workbook-bottom-rule home-bottom-rail" aria-hidden="true"><span>745.69</span><span>689.11</span><span>165.648</span></div>
+      </div>
+
+      <aside class="tool-right-rail home-right-rail" aria-hidden="true">
+        <div class="home-right-corner"></div>
+        <div class="home-right-sky"></div>
+        <div class="home-right-lavender"></div>
+        <div class="home-right-number first">238.716</div>
+        <div class="home-right-number second">432.927</div>
+        <div class="home-right-divider"></div>
+        <div class="home-right-bottom"></div>
+      </aside>
+    </main>
+
+    <nav class="sheet-tabs lcars-command-nav" aria-label="Tool sections">
+      <button class="mobile-nav-toggle" id="mobile-nav-toggle" type="button">☰ Sections</button>
+      <div class="nav-prefix"><span>LCARS</span><b>STFC</b></div>
+      <div class="nav-title">The Officer Tool <i>by StewieDøø</i></div>
+      <div class="sheet-tab-list" id="sheet-tab-list">
+        <button class="sheet-tab is-active" data-view="main" type="button">Main</button>
+        <button class="sheet-tab" data-view="bonuses" type="button">Bonuses</button>
+        <button class="sheet-tab" data-view="roster" type="button">Roster</button>
+        <button class="sheet-tab" data-view="docks" type="button">All Docks</button>
+        <button class="sheet-tab" data-view="saved" type="button">Saved Setups</button>
+        <button class="sheet-tab" data-view="presets" type="button">Pre-Set Crews</button>
+        <button class="sheet-tab" data-view="ships" type="button">Ships</button>
+        <button class="sheet-tab" data-view="ata-overview" type="button">ATA Overview</button>
+        <button class="sheet-tab" data-view="ata-analysis" type="button">ATA Analysis</button>
+        <button class="sheet-tab" data-view="ata-planning" type="button">ATA Planning</button>
+        <button class="sheet-tab" data-view="migration" type="button">Migration</button>
+        <button class="sheet-tab" data-view="changes" type="button">Change Log</button>
+      </div>
+      <div class="nav-suffix"><span>WEB</span><b>1.8.M87</b></div>
+    </nav>
+
+    <div class="tool-results" aria-live="polite">
+      <section class="tool-result" data-results-page="roster">
+        <div class="table-wrap roster-table-wrap"><table class="workbook-table roster-table"><thead><tr><th>Officer</th><th>Lvl</th><th>Rank</th><th>Attack</th><th>Defence</th><th>Health</th><th>Officer Group</th><th>Type</th><th>Captain Maneuver / Officer Ability</th></tr></thead><tbody id="roster-body"></tbody></table></div>
+      </section>
+      <section class="tool-result" data-results-page="docks"><div class="dock-list" id="dock-list"></div></section>
+      <section class="tool-result" data-results-page="saved"><div class="saved-setup-list" id="saved-setup-list"></div></section>
+      <section class="tool-result" data-results-page="presets">
+        <div class="preset-results-heading"><strong id="preset-count"></strong><span>Matching Crew Loadouts</span></div>
+        <div class="table-wrap preset-table-wrap"><table class="workbook-table preset-table"><thead><tr><th>Crew Name</th><th>Captain</th><th>1st Officer</th><th>2nd Officer</th><th>Recommended Rank</th><th>Notes</th><th></th></tr></thead><tbody id="preset-body"></tbody></table></div>
+      </section>
+      <section class="tool-result" data-results-page="ships">
+        <div class="table-wrap"><table class="workbook-table"><thead><tr><th>Ship Name</th><th>Level</th><th>Max. Level</th><th>Ability</th></tr></thead><tbody id="ship-body"></tbody></table></div>
+      </section>
+      <section class="tool-result" data-results-page="ata-overview">
+        <div class="table-wrap"><table class="workbook-table"><thead><tr><th>Mission</th><th>Rarity</th><th>Key Stat</th><th>Primary Rewards</th><th>Critical Reward</th><th>Duration</th></tr></thead><tbody id="ata-mission-body"></tbody></table></div>
+      </section>
+      <section class="tool-result" data-results-page="ata-analysis"><div class="analysis-cards" id="analysis-cards"></div></section>
+      <section class="tool-result" data-results-page="ata-planning"><div class="ata-plan-list" id="ata-plan-list"></div></section>
+      <section class="tool-result" data-results-page="changes">
+        <div class="change-log"><article><time>Web foundation</time><h2>Spreadsheet identity integrated</h2><p>Rebuilt the interface around the original Oswald typography, black canvas, copper frame and gold, lavender, purple and sky-blue input bands.</p></article><article><time>Data integration</time><h2>Workbook source tables connected</h2><p>Added 278 officers, 345 preset crews, 102 ships and 92 Away Team missions from the public workbook.</p></article><article><time>Core workflows</time><h2>Local-first planning</h2><p>Added roster levels and ranks, live officer stats, ship loadouts, docks, saved setups, crew filters, ship browsing, Away Team planning and JSON migration.</p></article></div>
+      </section>
+    </div>
+  </div>
+
+  <dialog class="officer-dialog" id="officer-dialog"><form method="dialog"><button class="dialog-close" aria-label="Close">×</button><p>Assign Officer</p><h2 id="dialog-title">Select an officer</h2><input id="dialog-search" type="search" placeholder="Search officers" /><div id="dialog-officers"></div></form></dialog>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="../scripts/app.ts"></script>
+</BaseLayout>

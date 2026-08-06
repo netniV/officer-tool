@@ -1,0 +1,8 @@
+node_modules/
+.pnpm-store/
+dist/
+.astro/
+.DS_Store
+*.log
+workbook-analysis/media/
+workbook-analysis/workbook-map.json
